@@ -8,7 +8,7 @@ import {
 import Input from "../src/components/Input";
 import PinkButton from "../src/components/PinkButton";
 
-export default function Home() {
+export default function Login() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
