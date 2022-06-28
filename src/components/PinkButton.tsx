@@ -1,6 +1,7 @@
+import { ReactChild, ReactFragment, ReactPortal } from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
 
-export default function PinkButton(props) {
+export default function PinkButton(props: { label: string | undefined; }) {
   return (
     <Pressable style={styles.submit}>
       <Text style={styles.text}>{props.label}</Text>

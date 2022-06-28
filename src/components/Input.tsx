@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 
-export default function Input(props: { label: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; placeholder: string | undefined; }) {
+export default function Input(props: { label: string | undefined; placeholder: string | undefined; }) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
