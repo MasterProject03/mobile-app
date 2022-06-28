@@ -1,6 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Image } from "react-native";
 
 import Login from "./src/Login";
 import Register from "./src/Register";
@@ -10,10 +11,16 @@ import Article from "./src/Article";
 
 const Stack = createNativeStackNavigator();
 
+function LogoTitle() {
+  return (
+    <Image style={{ width: 50, height: 50 }} source={require("./assets/frame.svg")}/>
+  )
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Article">
         <Stack.Group
           screenOptions={{
             headerShown: false
@@ -31,7 +38,7 @@ export default function App() {
             presentation: "modal"
           }}
         >
-          <Stack.Screen name="Article" component={Article} />
+          <Stack.Screen name="Article" component={Article} options={{ headerTitle: () => <LogoTitle />, headerBackVisible: true, headerStyle: { backgroundColor: "#0D0D0D" }, headerShadowVisible: false, headerTitleAlign: "center"}} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
