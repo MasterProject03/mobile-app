@@ -6,6 +6,7 @@ import { Image } from "react-native";
 import Login from "./src/Login";
 import Register from "./src/Register";
 import Home from "./src/Home";
+import Feed from "./src/Feed";
 import Profile from "./src/Profile";
 import Article from "./src/Article";
 
@@ -23,7 +24,7 @@ function LogoTitle() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Article">
+      <Stack.Navigator initialRouteName="Profile">
         <Stack.Group
           screenOptions={{
             headerShown: false,
@@ -34,8 +35,7 @@ export default function App() {
         </Stack.Group>
 
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Profile" component={Profile} />
-
+      
         <Stack.Group
           screenOptions={{
             presentation: "modal",
@@ -44,6 +44,17 @@ export default function App() {
           <Stack.Screen
             name="Article"
             component={Article}
+            options={{
+              headerTitle: () => <LogoTitle />,
+              headerBackVisible: true,
+              headerStyle: { backgroundColor: "#0D0D0D" },
+              headerShadowVisible: false,
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
             options={{
               headerTitle: () => <LogoTitle />,
               headerBackVisible: true,
