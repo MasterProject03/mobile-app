@@ -1,12 +1,27 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+} from "react-native";
+import Input from "../src/components/Input";
+import PinkButton from "../src/components/PinkButton";
+import RadioButton from "../src/components/RadioButton";
 
-export default function Home() {
+export default function Register() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-
-      <Text style={styles.text}>Open up Home.tsx to start working on your Home!</Text>
+      <View style={styles.header}>
+        <Image style={styles.logo} source={require("../assets/frame.svg")} />
+        <Text style={styles.text}>Créer un nouveau compte</Text>
+      </View>
+      <Input label="Nom d'utilisateur" placeholder="Entrer votre nom d'utilisateur" />
+      <Input label="Adresse email" placeholder="john.doe@email.com" />
+      <Input label="Mot de passe" placeholder="Entrer votre mot de passe" />
+      {/* <RadioButton/> */}
+      <PinkButton label="Se connecter"/>
     </View>
   );
 }
@@ -14,12 +29,27 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0d0d0d",
+    backgroundColor: "#0D0D0D",
+    alignItems: "center",
+    padding: 25,
+  },
+
+  header: {
     alignItems: "center",
     justifyContent: "center",
+    marginVertical: 40,
   },
 
   text: {
     color: "#ffffff",
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+
+  logo: {
+    width: "70%",
+    height: undefined,
+    aspectRatio: 1 / 1,
+    marginBottom: 50,
   },
 });
