@@ -13,17 +13,20 @@ const Stack = createNativeStackNavigator();
 
 function LogoTitle() {
   return (
-    <Image style={{ width: 50, height: 50 }} source={require("./assets/frame.svg")}/>
-  )
+    <Image
+      style={{ width: 50, height: 50 }}
+      source={require("./assets/frame.svg")}
+    />
+  );
 }
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Article">
+      <Stack.Navigator initialRouteName="Register">
         <Stack.Group
           screenOptions={{
-            headerShown: false
+            headerShown: false,
           }}
         >
           <Stack.Screen name="Login" component={Login} />
@@ -35,10 +38,20 @@ export default function App() {
 
         <Stack.Group
           screenOptions={{
-            presentation: "modal"
+            presentation: "modal",
           }}
         >
-          <Stack.Screen name="Article" component={Article} options={{ headerTitle: () => <LogoTitle />, headerBackVisible: true, headerStyle: { backgroundColor: "#0D0D0D" }, headerShadowVisible: false, headerTitleAlign: "center"}} />
+          <Stack.Screen
+            name="Article"
+            component={Article}
+            options={{
+              headerTitle: () => <LogoTitle />,
+              headerBackVisible: true,
+              headerStyle: { backgroundColor: "#0D0D0D" },
+              headerShadowVisible: false,
+              headerTitleAlign: "center",
+            }}
+          />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
