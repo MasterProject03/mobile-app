@@ -23,7 +23,7 @@ function LogoTitle() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Article">
         <Stack.Group
           screenOptions={{
             headerShown: false,

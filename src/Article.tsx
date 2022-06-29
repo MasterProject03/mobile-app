@@ -1,6 +1,7 @@
 import { StyleSheet, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import ArticleInfos from "../src/components/ArticleInfos";
+import ArticleSources from "../src/components/ArticleSources";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Article() {
@@ -64,6 +65,7 @@ export default function Article() {
           thésaurisation pour des investisseurs qui peuvent ainsi détenir
           plusieurs centaines voire plusieurs millions d’euros dans un coffre. »
         </Text>
+        <ArticleSources/>
       </ScrollView>
     </SafeAreaView>
   );
