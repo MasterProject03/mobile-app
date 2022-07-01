@@ -13,6 +13,7 @@ import "react-native-gesture-handler";
 import Login from "./src/Login";
 import Register from "./src/Register";
 import Home from "./src/Home";
+import Feed from "./src/Feed";
 import Profile from "./src/Profile";
 import Article from "./src/Article";
 import Settings from "./src/Settings";
