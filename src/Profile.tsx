@@ -59,7 +59,8 @@ export default function Home() {
           title="Un vaste trafic de montres de luxe volées démantelé"
           author="Luc Leroux(Marseille, correspondant)" 
       />
-      <View style={{paddingBottom: 200}}>
+      </View>
+      <View style={styles.profileFeed}>
         {userData.map(a=>{
           return <FeedInfos
           key={a.id}
@@ -71,7 +72,6 @@ export default function Home() {
           img={a.img}
           />
         })}
-      </View>
       </View>
     </ScrollView>
   );
@@ -90,6 +90,14 @@ const styles = StyleSheet.create({
 
   profileInfos: {
     paddingLeft: 20,
-    marginTop: 20
+    marginTop: 20,
+    borderBottomWidth: 1,
+    borderColor: "#DA90DA",
+    marginBottom: 10
+  },
+
+  profileFeed: {
+    paddingBottom: 200,
+    paddingLeft: 20,
   }
 });

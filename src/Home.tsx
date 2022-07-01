@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import FeedInfos from "../src/components/FeedInfos";
 import { SafeAreaView } from "react-native-safe-area-context";
+import {Poppins_500Medium} from '@expo-google-fonts/dev'
 
 const userData = [{
   id: 0,
@@ -66,6 +67,9 @@ export default function Home() {
           />
         })}
       </ScrollView>
+      <View style={styles.newArticle}>
+        <Image style={styles.image} source={require("../assets/pen.png")}/>
+      </View>
     </SafeAreaView>
   );
 }
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0d0d0d",
     alignItems: "center",
     justifyContent: "center",
+    fontFamily: Poppins_500Medium
   },
 
   feed: {
@@ -86,5 +91,20 @@ const styles = StyleSheet.create({
 
   text: {
     color: "#ffffff",
+    fontFamily: Poppins_500Medium
   },
+
+  newArticle: {
+   position: 'absolute',
+   right:     '25px',
+   bottom:      '20px',
+   backgroundColor: '#DA90DA',
+   height: '50px',
+   width: '50px',
+   borderRadius: 50
+  },
+
+  image: {
+    aspectRatio: 1 / 1,
+  }
 });
