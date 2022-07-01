@@ -93,47 +93,55 @@ function CustomDrawerContent({ ...props }) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
-        <Stack.Group
-          screenOptions={{
-            headerShown: false,
+      <Drawer.Navigator
+        initialRouteName="Home"
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          drawerStyle: { backgroundColor: "#0D0D0D" },
+          drawerActiveTintColor: "#DA90DA",
+          drawerActiveBackgroundColor: "#FFFFFF",
+          drawerInactiveTintColor: "#FFFFFF",
+          drawerInactiveBackgroundColor: "#0D0D0D",
+          drawerItemStyle: { borderRadius: 30 },
+        }}
+      >
+        <Drawer.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 15.46 / 16.43 }}
+                source={require("./assets/user.svg")}
+              />
+            ),
           }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Group>
-
-        <Stack.Screen name="Home" component={Home} />
-      
-        <Stack.Group
-          screenOptions={{
-            presentation: "modal",
+        />
+        <Drawer.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 1 / 1 }}
+                source={require("./assets/settings.svg")}
+              />
+            ),
           }}
-        >
-          <Stack.Screen
-            name="Article"
-            component={Article}
-            options={{
-              headerTitle: () => <LogoTitle />,
-              headerBackVisible: true,
-              headerStyle: { backgroundColor: "#0D0D0D" },
-              headerShadowVisible: false,
-              headerTitleAlign: "center",
-            }}
-          />
-          <Stack.Screen
-            name="Profile"
-            component={Profile}
-            options={{
-              headerTitle: () => <LogoTitle />,
-              headerBackVisible: true,
-              headerStyle: { backgroundColor: "#0D0D0D" },
-              headerShadowVisible: false,
-              headerTitleAlign: "center",
-            }}
-          />
-        </Stack.Group>
-      </Stack.Navigator>
+        />
+        <Drawer.Screen
+          name="Privacy"
+          component={Privacy}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 14.84 / 17.88 }}
+                source={require("./assets/shield.svg")}
+              />
+            ),
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
