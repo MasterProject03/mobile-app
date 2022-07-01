@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Image, View,TextInput } from "react-native";
+import { CALLBACK_TYPE } from "react-native-gesture-handler/lib/typescript/handlers/gestures/gesture";
 
 export default function NewArticle() {
   return (
@@ -26,16 +27,22 @@ const styles = StyleSheet.create({
 
   input: {
     color: "#ffffff",
-    height: 200
+    height: 200,
+    width: "100%",
+    marginTop: 10
   },
 
   profilepic: {
     width: 50,
     aspectRatio: 1 / 1,
     borderRadius: 25,
+    alignSelf: "flex-start",
+    marginRight: 8
   },
 
   editContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    width: "100%",
+    padding: 20,
   }
 });
