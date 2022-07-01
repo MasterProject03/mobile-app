@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import FeedInfos from "../src/components/FeedInfos";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {Poppins_500Medium} from '@expo-google-fonts/dev'
+import {Poppins_500Medium, Rowdies_700Bold} from '@expo-google-fonts/dev'
 
 const userData = [{
   id: 0,
@@ -66,6 +66,9 @@ export default function Home() {
           img={a.img}
           />
         })}
+        <View style={styles.bottomSection}>
+          <Text style={styles.bottomText}>You have seen everything for today, come back tomorrow!</Text>
+        </View>
       </ScrollView>
       <View style={styles.newArticle}>
         <Image style={styles.image} source={require("../assets/pen.png")}/>
@@ -106,5 +109,19 @@ const styles = StyleSheet.create({
 
   image: {
     aspectRatio: 1 / 1,
+  },
+
+  bottomText: {
+    color: 'white',
+    width: 200
+  },
+
+  bottomSection: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderColor: "#DA90DA",
+    paddingTop: 10
   }
 });
