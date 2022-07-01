@@ -15,6 +15,8 @@ import Register from "./src/Register";
 import Home from "./src/Home";
 import Feed from "./src/Feed";
 import Profile from "./src/Profile";
+import NewArticle from "./src/NewArticle";
+import ProfileInfos from "./src/components/ProfileInfos";
 import Article from "./src/Article";
 import Settings from "./src/Settings";
 import Privacy from "./src/Privacy";
@@ -99,12 +101,24 @@ export default function App() {
         screenOptions={{
           drawerStyle: { backgroundColor: "#0D0D0D" },
           drawerActiveTintColor: "#DA90DA",
-          drawerActiveBackgroundColor: "#FFFFFF",
+          drawerActiveBackgroundColor: "#000000",
           drawerInactiveTintColor: "#FFFFFF",
           drawerInactiveBackgroundColor: "#0D0D0D",
           drawerItemStyle: { borderRadius: 30 },
         }}
       >
+        <Drawer.Screen
+          name="Home"
+          component={Home}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 15.46 / 16.43 }}
+                source={require("./assets/user.svg")}
+              />
+            ),
+          }}
+        />
         <Drawer.Screen
           name="Profile"
           component={Profile}
@@ -118,8 +132,33 @@ export default function App() {
           }}
         />
         <Drawer.Screen
+          name="NewArticle"
+          component={NewArticle}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 15.46 / 16.43 }}
+                source={require("./assets/user.svg")}
+              />
+            ),
+            headerShown: false
+          }}          
+        />
+        <Drawer.Screen
           name="Settings"
           component={Settings}
+          options={{
+            drawerIcon: () => (
+              <Image
+                style={{ height: 20, aspectRatio: 1 / 1 }}
+                source={require("./assets/settings.svg")}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Article"
+          component={Article}
           options={{
             drawerIcon: () => (
               <Image

@@ -37,7 +37,7 @@ export default function FeedInfos({...props}) {
         </View>
       </View>
       <View style={styles.articleInfos}>
-        <Image style={styles.articlepic} source={require(props.img)} />
+        <Image style={styles.articlepic} source={require("../../assets/articleimg.jpg")} />
         <View style={styles.articleDesc}>
           <Text style={[styles.text, styles.title]}>{props.title}</Text>
           <Image style={styles.verified} source={require("../../assets/arrow.png")} />
