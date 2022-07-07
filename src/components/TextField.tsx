@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View, TextInput, Text } from "react-native"
 
-export default function TextField({ children, style, label, ...props }) {
+export default function TextField({ style, label, ...props }: any) {
   return (
     <View style={[styles.container, style]}>
       <Text style={styles.label}>{label}</Text>
@@ -15,6 +15,8 @@ export default function TextField({ children, style, label, ...props }) {
 }
 
 const styles = StyleSheet.create({
+  container: {},
+
   label: {
     color: "white",
     fontSize: 16,

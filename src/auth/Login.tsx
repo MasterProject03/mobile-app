@@ -1,28 +1,32 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { StatusBar } from "expo-status-bar"
-import { Platform, StyleSheet, Alert, KeyboardAvoidingView, Text, View, Image } from "react-native"
+import { StyleSheet, Alert, KeyboardAvoidingView, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import { Link, StackActions } from "@react-navigation/native"
+import { Link, StackActions, NavigationProp } from "@react-navigation/native"
 
 import { AuthContext } from "./AuthProvider"
-import Button from "../components/Button.tsx"
-import TextField from "../components/TextField.tsx"
+import Button from "../components/Button"
+import TextField from "../components/TextField"
 import Logo from "../../assets/icons/logo.svg"
 import API from "../api"
 
-export default function Login({ navigation }) {
+export default function Login({ navigation }: { navigation: NavigationProp<{}> }) {
   const { account, setAccount } = useContext(AuthContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  useEffect(() => {
+    if (account != null)
+    navigation.dispatch(StackActions.replace("Main"))
+  }, [account])
+
   const submit = async () => {
     try {
-      const newAccount = await API.login({ email, password })
+      const { token } = await API.login(email, password)
+      const newAccount = await API.getMe(token)
 
-      setAccount(newAccount)
-
-      navigation.replace("Main")
-    } catch (error) {
+      setAccount({ token, ...newAccount })
+    } catch (error: any) {
       Alert.alert("Erreur de connexion", error.error)
       console.error(error)
     }
@@ -91,7 +95,6 @@ const styles = StyleSheet.create({
 
   scrollContent: {
     flex: 1,
-    position: "fixed",
     padding: 25,
   },
 
