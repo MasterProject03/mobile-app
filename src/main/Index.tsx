@@ -1,9 +1,9 @@
-import React from "react";
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
-import { Image, Linking } from "react-native";
-import "react-native-gesture-handler";
+import React from "react"
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer"
+import { Image, Linking } from "react-native"
+import "react-native-gesture-handler"
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
 export default function Main() {
   return (
@@ -43,5 +43,5 @@ export default function Main() {
       }}
     >
     </Drawer.Navigator>
-  );
+  )
 }
