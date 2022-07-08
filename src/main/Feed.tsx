@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View, ScrollView, Alert, RefreshControl } from "react-native"
+import { StyleSheet, View, ScrollView, Alert, RefreshControl } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 import { AuthContext } from "../auth/AuthProvider"
 import Loading from "./Loading"
 import API from "../api"
 import Post from "../api/types/post"
+import PostPreview from "../components/PostPreview"
+import { Link } from "@react-navigation/native"
 
 export default function Feed() {
   const { account } = useContext(AuthContext)
@@ -22,7 +24,7 @@ export default function Feed() {
         const feed = await API.getFeed(account.token)
 
         setFeed(feed)
-        setTimeout(() => setRefreshing(false), 500)
+        setRefreshing(false)
       } catch (error: any) {
         Alert.alert("Erreur de chargement", error.error)
         console.error(error)
@@ -52,10 +54,9 @@ export default function Feed() {
       >
         <SafeAreaView style={styles.safeArea}>
           {feed.map(post =>
-            <View>
-              <Text>{post.title}</Text>
-              <Text>{post.content}</Text>
-            </View>
+            <Link key={post.id} to={{ screen: "PostDetails", params: { id: post.id } }} style={styles.post}>
+              <PostPreview post={post} />
+            </Link>
           )}
         </SafeAreaView>
       </ScrollView>
@@ -75,11 +76,14 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    flex: 1,
-    padding: 25,
+    paddingHorizontal: 25,
   },
 
   safeArea: {
     flex: 1,
+  },
+
+  post: {
+    marginBottom: 50,
   },
 })

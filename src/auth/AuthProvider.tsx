@@ -38,6 +38,11 @@ export default function AuthProvider({ children }: { children: ReactNode | React
         }
 
         const oldAccount = JSON.parse(accountData) as Account
+        if (oldAccount.token === undefined) {
+          setLoading(false)
+          return
+        }
+
         const { token } = await API.refreshToken(oldAccount.token)
         const newAccount = await API.getMe(token)
 

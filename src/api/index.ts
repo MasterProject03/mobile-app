@@ -58,8 +58,12 @@ class API {
     return await this._put(`/auth/token/${encodeURIComponent(token)}/refresh`)
   }
 
-  async getFeed(token: string) {
+  async getFeed(token?: string) {
     return await this._get("/posts/feed", token)
+  }
+
+  async getPost(id: string) {
+    return await this._get(`/posts/${encodeURIComponent(id)}`)
   }
 
 }

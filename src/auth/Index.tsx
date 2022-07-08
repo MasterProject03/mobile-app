@@ -14,7 +14,7 @@ export default function Auth() {
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} options={{ animation: "fade" }} />
         <Stack.Screen name="Register" component={Register} options={{ animation: "fade" }} />
-        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="App" component={Main} />
       </Stack.Navigator>
     </AuthProvider>
   )

@@ -16,8 +16,8 @@ export default function Login({ navigation }: { navigation: NavigationProp<{}> }
   const [password, setPassword] = useState("")
 
   useEffect(() => {
-    if (account != null)
-      navigation.dispatch(StackActions.replace("Main"))
+    if (account !== null)
+      navigation.dispatch(StackActions.replace("App"))
   }, [account])
 
   const submit = async () => {

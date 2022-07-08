@@ -19,7 +19,7 @@ export default function Register({ navigation }: { navigation: NavigationProp<{}
 
   useEffect(() => {
     if (account != null)
-      navigation.dispatch(StackActions.replace("Main"))
+      navigation.dispatch(StackActions.replace("App"))
   }, [account])
 
   const submit = async () => {

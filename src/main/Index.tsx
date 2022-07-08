@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer"
 import { StyleSheet, Linking } from "react-native"
 import { StackActions, NavigationProp } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import "react-native-gesture-handler"
 
 import { AuthContext } from "../auth/AuthProvider"
@@ -15,10 +16,12 @@ import SettingsIcon from "../../assets/icons/settings.svg"
 import PrivacyIcon from "../../assets/icons/privacy.svg"
 import HeadphonesIcon from "../../assets/icons/headphones.svg"
 import Button from "../components/Button"
+import PostDetails from "./PostDetails"
 
+const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
 
-export default function Main({ navigation }: { navigation: NavigationProp<{}> }) {
+function DrawerNavigator({ navigation }: { navigation: NavigationProp<{}> }) {
   const { setAccount } = useContext(AuthContext)
 
   const logout = async () => {
@@ -86,14 +89,29 @@ export default function Main({ navigation }: { navigation: NavigationProp<{}> })
           <FeedIcon width={20} height={20} style={{ color } as any} />
       }} />
       <Drawer.Screen name="Profile" component={Profile} options={{
+        headerStyle: styles.header,
+        headerTintColor: "#DA90DA",
         drawerIcon: ({ color }) =>
           <ProfileIcon width={20} height={20} style={{ color } as any} />
       }} />
       <Drawer.Screen name="Settings" component={Settings} options={{
+        headerStyle: styles.header,
+        headerTintColor: "#DA90DA",
         drawerIcon: ({ color }) =>
           <SettingsIcon width={20} height={20} style={{ color } as any} />
       }} />
     </Drawer.Navigator>
+  )
+}
+
+export default function Main() {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerShown: false,
+    }}>
+      <Stack.Screen name="Main" component={DrawerNavigator} />
+      <Stack.Screen name="PostDetails" component={PostDetails} />
+    </Stack.Navigator>
   )
 }
 
