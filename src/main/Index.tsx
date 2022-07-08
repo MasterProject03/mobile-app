@@ -1,17 +1,53 @@
-import React from "react"
+import React, { useContext } from "react"
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer"
-import { Image, Linking } from "react-native"
+import { StyleSheet, Linking } from "react-native"
+import { StackActions, NavigationProp } from "@react-navigation/native"
 import "react-native-gesture-handler"
+
+import { AuthContext } from "../auth/AuthProvider"
+import Feed from "./Feed"
+import Profile from "./Profile"
+import Settings from "./Settings"
+import Logo from "../../assets/icons/logo.svg"
+import FeedIcon from "../../assets/icons/feed.svg"
+import ProfileIcon from "../../assets/icons/profile.svg"
+import SettingsIcon from "../../assets/icons/settings.svg"
+import PrivacyIcon from "../../assets/icons/privacy.svg"
+import HeadphonesIcon from "../../assets/icons/headphones.svg"
+import Button from "../components/Button"
 
 const Drawer = createDrawerNavigator()
 
-export default function Main() {
+export default function Main({ navigation }: { navigation: NavigationProp<{}> }) {
+  const { setAccount } = useContext(AuthContext)
+
+  const logout = async () => {
+    await setAccount(undefined)
+    navigation.dispatch(StackActions.replace("Login"))
+  }
+
   return (
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={props =>
         <DrawerContentScrollView {...props}>
+          <Logo width={100} height={100} style={styles.logo} />
+
           <DrawerItemList {...props} />
+
+          <DrawerItem
+            label="Privacy"
+            onPress={() => Linking.openURL("https://ducki.dev")}
+            labelStyle={{ color: "#ffffff" }}
+            activeTintColor="#DA90DA"
+            activeBackgroundColor="#FFFFFF"
+            inactiveTintColor="#FFFFFF"
+            inactiveBackgroundColor="#0D0D0D"
+            icon={({ color }) =>
+              <PrivacyIcon width={20} height={20} style={{ color } as any} />
+            }
+          />
+
           <DrawerItem
             label="Help center"
             onPress={() => Linking.openURL("https://ducki.dev")}
@@ -20,13 +56,14 @@ export default function Main() {
             activeBackgroundColor="#FFFFFF"
             inactiveTintColor="#FFFFFF"
             inactiveBackgroundColor="#0D0D0D"
-            icon={() =>
-              <Image
-                style={{ height: 20, aspectRatio: 15.46 / 16.43 }}
-                source={require("../../assets/icons/headphones.svg")}
-              />
+            icon={({ color }) =>
+              <HeadphonesIcon width={20} height={20} style={{ color } as any} />
             }
           />
+
+          <Button onPress={logout} style={styles.logout}>
+            Se déconnecter
+          </Button>
         </DrawerContentScrollView>
       }
       screenOptions={{
@@ -42,6 +79,36 @@ export default function Main() {
         },
       }}
     >
+      <Drawer.Screen name="Feed" component={Feed} options={{
+        headerStyle: styles.header,
+        headerTintColor: "#DA90DA",
+        drawerIcon: ({ color }) =>
+          <FeedIcon width={20} height={20} style={{ color } as any} />
+      }} />
+      <Drawer.Screen name="Profile" component={Profile} options={{
+        drawerIcon: ({ color }) =>
+          <ProfileIcon width={20} height={20} style={{ color } as any} />
+      }} />
+      <Drawer.Screen name="Settings" component={Settings} options={{
+        drawerIcon: ({ color }) =>
+          <SettingsIcon width={20} height={20} style={{ color } as any} />
+      }} />
     </Drawer.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#0D0D0D",
+  },
+
+  logo: {
+    alignSelf: "center",
+    marginVertical: 50,
+  },
+
+  logout: {
+    alignSelf: "center",
+    marginTop: 50,
+  },
+})

@@ -28,7 +28,7 @@ export default function Register({ navigation }: { navigation: NavigationProp<{}
       const { token } = await API.login(email, password)
       const newAccount = await API.getMe(token)
 
-      setAccount({ token, ...newAccount })
+      await setAccount({ token, ...newAccount })
     } catch (error: any) {
       Alert.alert("Erreur d'inscription", error.error)
       console.error(error)

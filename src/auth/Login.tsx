@@ -17,7 +17,7 @@ export default function Login({ navigation }: { navigation: NavigationProp<{}> }
 
   useEffect(() => {
     if (account != null)
-    navigation.dispatch(StackActions.replace("Main"))
+      navigation.dispatch(StackActions.replace("Main"))
   }, [account])
 
   const submit = async () => {
@@ -25,7 +25,7 @@ export default function Login({ navigation }: { navigation: NavigationProp<{}> }
       const { token } = await API.login(email, password)
       const newAccount = await API.getMe(token)
 
-      setAccount({ token, ...newAccount })
+      await setAccount({ token, ...newAccount })
     } catch (error: any) {
       Alert.alert("Erreur de connexion", error.error)
       console.error(error)

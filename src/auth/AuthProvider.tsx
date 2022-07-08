@@ -8,10 +8,10 @@ import { Alert } from "react-native";
 
 export const AuthContext = createContext<{
   account?: Account,
-  setAccount: (newAccount?: Account) => void
+  setAccount: (newAccount?: Account) => Promise<void>
 }>({
   account: undefined,
-  setAccount: () => {}
+  setAccount: async () => {}
 });
 
 export default function AuthProvider({ children }: { children: ReactNode | ReactNode[] }) {
@@ -41,7 +41,7 @@ export default function AuthProvider({ children }: { children: ReactNode | React
         const { token } = await API.refreshToken(oldAccount.token)
         const newAccount = await API.getMe(token)
 
-        setAccountPersist({ token, ...newAccount })
+        await setAccountPersist({ token, ...newAccount })
         setLoading(false)
       } catch (error: any) {
         Alert.alert("Erreur de reconnexion", error.error)
